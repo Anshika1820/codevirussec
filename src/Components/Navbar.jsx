@@ -58,8 +58,10 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* SEARCH */}
+        {/* RIGHT SECTION */}
         <div className="ml-auto hidden md:flex items-center gap-3">
+          
+          {/* Search */}
           <div className="flex items-center border rounded-full px-3 py-2">
             <input
               type="text"
@@ -77,6 +79,14 @@ const Navbar = () => {
             />
           </div>
 
+          {/* LOGIN BUTTON (restored) */}
+          <Link to="/login">
+            <button className="px-5 py-2 rounded-full border border-[#0b2a5b] text-[#0b2a5b] hover:bg-[#0b2a5b] hover:text-white transition">
+              Login
+            </button>
+          </Link>
+
+          {/* CONTACT BUTTON */}
           <Link to="/contact">
             <button className="px-5 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white">
               Contact
@@ -100,7 +110,8 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* Mobile search */}
+          <Link to="/login">Login</Link>
+
           <div className="flex items-center border rounded-full px-3 py-2">
             <input
               type="text"
