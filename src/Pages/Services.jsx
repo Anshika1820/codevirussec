@@ -167,60 +167,80 @@ const Services = () => {
   };
 
   return (
-    <div className="py-16 px-6 bg-slate-50 min-h-screen">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-[#0b2a5b]">
-          Our Security Services
-        </h2>
-        <div className="h-1 w-20 bg-[#0b2a5b] mx-auto mt-3 rounded-full" />
-      </div>
-
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10 items-start">
-        {services.map((service, index) => (
-          <div
-            id={`service-${index}`}
-            key={index}
-            className={`bg-white border rounded-xl p-8 transition duration-300
-            ${
-              highlightIndex === index
-                ? "border-[#0b2a5b] shadow-2xl scale-[1.02]"
-                : "border-slate-200 shadow-sm hover:shadow-lg"
-            }`}
-          >
-            <div className="h-1 w-12 bg-[#0b2a5b] rounded-full mb-6" />
-
-            <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3">
-              {service.title}
-            </h3>
-
-            <p className="text-slate-600 text-sm">{service.desc}</p>
-
-            {/* READ MORE BUTTON */}
-            <button
-              onClick={() => toggleReadMore(index)}
-              className="mt-4 text-[#0b2a5b] font-semibold text-sm hover:underline"
-            >
-              {expandedIndex === index ? "Show Less" : "Read More"}
-            </button>
-
-            {/* EXPANDED CONTENT */}
-            {expandedIndex === index && (
-              <div className="mt-4 text-sm text-slate-700 space-y-2">
-                <p>{service.details.overview}</p>
-                <p className="italic text-slate-600">{service.details.why}</p>
-
-                <ul className="list-disc pl-5 mt-2">
-                  {service.details.features.map((f, i) => (
-                    <li key={i}>{f}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+  <div className="py-20 px-6 bg-slate-50 min-h-screen">
+    <div className="text-center mb-14">
+      <h2 className="text-3xl font-bold text-[#0b2a5b]">
+        Our Security Services
+      </h2>
+      <div className="h-1 w-24 bg-[#0b2a5b] mx-auto mt-4 rounded-full" />
+      <p className="text-slate-600 mt-4 max-w-xl mx-auto">
+        Enterprise-grade cybersecurity services designed to protect,
+        monitor, and strengthen your digital infrastructure.
+      </p>
     </div>
-  );
+
+    <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+      {services.map((service, index) => (
+        <div
+          id={`service-${index}`}
+          key={index}
+          className={`bg-white border rounded-2xl p-8 transition-all duration-300
+          ${
+            highlightIndex === index
+              ? "border-[#0b2a5b] shadow-xl ring-2 ring-[#0b2a5b]/10"
+              : "border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1"
+          }`}
+        >
+          <div className="flex items-center justify-between mb-5">
+            <div className="h-1 w-12 bg-[#0b2a5b] rounded-full" />
+            <span className="text-xs font-semibold text-slate-400">
+              Service
+            </span>
+          </div>
+
+          <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3 leading-snug">
+            {service.title}
+          </h3>
+
+          <p className="text-slate-600 text-sm leading-relaxed">
+            {service.desc}
+          </p>
+
+          <button
+            onClick={() => toggleReadMore(index)}
+            className="mt-5 text-[#0b2a5b] font-semibold text-sm flex items-center gap-1"
+          >
+            {expandedIndex === index ? "Show Less" : "Read More"}
+            <span>→</span>
+          </button>
+
+          {expandedIndex === index && (
+            <div className="mt-5 text-sm text-slate-700 space-y-3 border-t pt-4">
+              <p>{service.details.overview}</p>
+
+              <p className="italic text-slate-500">
+                {service.details.why}
+              </p>
+
+              <ul className="mt-3 space-y-2">
+                {service.details.features.map((f, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-slate-700"
+                  >
+                    <span className="mt-1 h-2 w-2 rounded-full bg-[#0b2a5b]" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
 };
 
 export default Services;
