@@ -25,7 +25,7 @@ const Contact = () => {
             {/* LEFT: Company Information */}
             <div className="space-y-7">
               <div className="flex items-start gap-4">
-                <MapPin size={22} className="text-blue-700 mt-1" />
+                <MapPin size={22} className="text-[#0b2a5b] mt-1" />
                 <div>
                   <h4 className="font-semibold text-slate-900">Office Location</h4>
                   <p className="text-slate-600 text-sm">Lucknow, India</p>
@@ -33,12 +33,12 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <Mail size={22} className="text-blue-700 mt-1" />
+                <Mail size={22} className="text-[#0b2a5b] mt-1" />
                 <div>
                   <h4 className="font-semibold text-slate-900">Business Email</h4>
                   <a
                     href="mailto:services@codevirussec.in"
-                    className="text-blue-700 text-sm hover:underline"
+                    className="text-[#0b2a5b] text-sm hover:underline"
                   >
                     services@codevirussec.in
                   </a>
@@ -46,7 +46,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <Phone size={22} className="text-blue-700 mt-1" />
+                <Phone size={22} className="text-[#0b2a5b] mt-1" />
                 <div>
                   <h4 className="font-semibold text-slate-900">Contact Number</h4>
                   <p className="text-slate-600 text-sm">+91 9918103909</p>
@@ -54,7 +54,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <Clock size={22} className="text-blue-700 mt-1" />
+                <Clock size={22} className="text-[#0b2a5b] mt-1" />
                 <div>
                   <h4 className="font-semibold text-slate-900">Business Hours</h4>
                   <p className="text-slate-600 text-sm">
@@ -71,7 +71,7 @@ const Contact = () => {
               </h3>
 
               <div className="flex items-start gap-3">
-                <ShieldCheck className="text-blue-700 mt-1" size={20} />
+                <ShieldCheck className="text-[#0b2a5b] mt-1" size={20} />
                 <div>
                   <p className="font-semibold text-slate-900 text-sm">
                     24/7 Monitoring
@@ -83,7 +83,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <ShieldCheck className="text-blue-700 mt-1" size={20} />
+                <ShieldCheck className="text-[#0b2a5b] mt-1" size={20} />
                 <div>
                   <p className="font-semibold text-slate-900 text-sm">
                     Expert Team
@@ -95,7 +95,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <ShieldCheck className="text-blue-700 mt-1" size={20} />
+                <ShieldCheck className="text-[#0b2a5b] mt-1" size={20} />
                 <div>
                   <p className="font-semibold text-slate-900 text-sm">
                     Advanced Technology
@@ -117,33 +117,33 @@ const Contact = () => {
                 <input
                   type="text"
                   placeholder="Full Name"
-                  className="w-full border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-blue-700"
+                  className="w-full border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-[#0b2a5b]"
                   required
                 />
 
                 <input
                   type="email"
                   placeholder="Email Address"
-                  className="w-full border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-blue-700"
+                  className="w-full border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-[#0b2a5b]"
                   required
                 />
 
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-blue-700"
+                  className="w-full border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-[#0b2a5b]"
                   required
                 />
 
                 <textarea
                   rows="3"
                   placeholder="Briefly describe your requirement"
-                  className="w-full border border-slate-300 px-3 py-2 text-sm resize-none focus:outline-none focus:border-blue-700"
+                  className="w-full border border-slate-300 px-3 py-2 text-sm resize-none focus:outline-none focus:border-[#0b2a5b]"
                 ></textarea>
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-md text-sm font-semibold transition"
+                  className="w-full bg-[#0b2a5b] hover:bg-[#0b2a8b] text-white py-2 rounded-md text-sm font-semibold transition"
                 >
                   Submit Inquiry
                 </button>
