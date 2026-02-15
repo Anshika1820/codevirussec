@@ -21,7 +21,6 @@ const Navbar = () => {
     { name: "Projects", path: "/project" },
     { name: "Team", path: "/team" },
     { name: "About Us", path: "/about" },
-    { name: "Contact", path: "/contact" },
   ];
 
   const handleSearch = () => {
