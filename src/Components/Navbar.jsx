@@ -11,7 +11,6 @@ const Navbar = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
