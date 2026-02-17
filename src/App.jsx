@@ -28,7 +28,7 @@ function App() {
       <Navbar />
        <ScrollToTop />
 
-      {/* Page Layout Wrapper */}
+    
       <main className="pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
