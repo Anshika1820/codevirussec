@@ -214,21 +214,25 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+export default function Projects({preview = false}) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [view, setView] = useState("home");
   const [activeProject, setActiveProject] = useState(null);
 
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+let filteredProjects =
+activeCategory === "All"
+  ? projects
+  : projects.filter((p) => p.category === activeCategory);
+
+if (preview) {
+  filteredProjects = projects.slice(0, 3);
+}
 
   return (
     <div className="pt-24 py-12 min-h-screen bg-slate-100 w-full">
 
       {/* HERO */}
-      {view !== "detail" && (
+      {!preview && view !== "detail" && (
         <section className="w-full pt-12 pb-16">
           <div className="max-w-6xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#0b2a5b] mb-6">
@@ -243,7 +247,7 @@ export default function Projects() {
       )}
 
       {/* FILTER BUTTONS */}
-      {view !== "detail" && (
+      {!preview && view !== "detail" && (
         <section className="w-full pb-10">
           <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
@@ -265,70 +269,99 @@ export default function Projects() {
       )}
 
       {/* PROJECT CARDS */}
-      {view !== "detail" && (
-        <section className="w-full py-16">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {filteredProjects.map((project, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -8 }}
-                className="cursor-pointer rounded-2xl overflow-hidden bg-[#0f1f3d] border border-[#1d3b6d] shadow-lg hover:shadow-2xl transition-all "
-                onClick={() => {
-                  setActiveProject(project);
-                  setView("detail");
-                }}
-              >
-                {/* IMAGE SECTION */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 "
-                  />
+          `{view !== "detail" && (
+            <section className="w-full ">
+              <h1 className="text-4xl md:text-3xl font-extrabold text-[#0b2a5b] mb-6 text-center pb-10   ">Codevirus Cybersecurity Projects & Case Studies</h1>
+              <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                {filteredProjects.map((project, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -8 }}
+                    className="cursor-pointer rounded-2xl overflow-hidden bg-[#0f1f3d] border border-[#1d3b6d] shadow-lg hover:shadow-2xl transition-all"
+                    onClick={() => {
+                      if (!preview) {
+                        setActiveProject(project);
+                        setView("detail");
+                      }
+                    }}
+                  >
+                    
+                    {/* IMAGE */}
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
 
-                  {/* CATEGORY BADGE */}
-                  <span className="absolute top-4 left-4 bg-[#ffff] text-[#0b2a5b] text-xs font-semibold px-4 py-1 rounded-full shadow-md">
-                    {project.category}
-                  </span>
+                      {!preview && (
+                        <span className="absolute top-4 left-4 bg-white text-[#0b2a5b] text-xs font-semibold px-4 py-1 rounded-full shadow-md">
+                          {project.category}
+                        </span>
+                      )}
 
-                  {/* DARK OVERLAY */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b2a5b]/80 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0b2a5b]/80 via-transparent to-transparent"></div>
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-white mb-3 leading-snug">
+                        {project.title}
+                      </h3>
+
+                      {/* LESS DETAILS IN PREVIEW */}
+                      <p className="text-slate-300 text-sm mb-5">
+                        {preview
+                          ? project.description.substring(0, 90) + "..."
+                          : project.description}
+                      </p>
+
+                      {/* Hide extra details in preview */}
+                      {!preview && (
+                        <>
+                          <div className="text-sm text-slate-400 mb-4 space-y-1">
+                            <p>
+                              <span className="font-semibold text-white">Client:</span>{" "}
+                              {project.client}
+                            </p>
+                            <p>
+                              <span className="font-semibold text-white">Duration:</span>{" "}
+                              {project.duration}
+                            </p>
+                          </div>
+
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.slice(0, 4).map((tech, index) => (
+                              <span
+                                key={index}
+                                className="bg-[#1d3b6d] text-slate-200 text-xs px-3 py-1 rounded-full"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* VIEW ALL BUTTON ONLY IN PREVIEW */}
+              {preview && (
+                <div className="text-center mt-12">
+                  <a
+                    href="/project"
+                    className="px-8 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:bg-[#081c3a] transition"
+                  >
+                    View All Projects
+                  </a>
                 </div>
+              )}
+            </section>
+          )}
 
-                {/* CONTENT */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3 leading-snug">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-slate-300 text-sm mb-5">
-                    {project.description}
-                  </p>
-
-                  {/* CLIENT & DURATION */}
-                  <div className="text-sm text-slate-400 mb-4 space-y-1">
-                    <p><span className="font-semibold text-white">Client:</span> {project.client}</p>
-                    <p><span className="font-semibold text-white">Duration:</span> {project.duration}</p>
-                  </div>
-
-                  {/* TECHNOLOGY TAGS */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 4).map((tech, index) => (
-                      <span
-                        key={index}
-                        className="bg-[#1d3b6d] text-slate-200 text-xs px-3 py-1 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* DETAIL VIEW */}
       {view === "detail" && activeProject && (
