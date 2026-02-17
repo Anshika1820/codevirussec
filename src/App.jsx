@@ -15,12 +15,12 @@ import Contact from "./Pages/Contact";
 import SecurityApproach from "./Pages/SecurityApproach";
 import GetStarted from "./Pages/GetStarted";
 import Project from "./Pages/Project";
-import Page1 from "./Pages/Page1";
-import Page2 from "./Pages/Page2";
-import Page3 from "./Pages/Page3";
-import Page4 from "./Pages/Page4";
-import Page5 from "./Pages/Page5";
-import Page6 from "./Pages/Page6";
+import Page1 from "./Pages/TeamPage1";
+import Page2 from "./Pages/TeamPage2";
+import Page3 from "./Pages/TeamPage3";
+import Page4 from "./Pages/TeamPage4";
+import Page5 from "./Pages/TeamPage5";
+import Page6 from "./Pages/TeamPage6";
 
 function App() {
   return (
