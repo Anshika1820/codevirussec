@@ -51,7 +51,6 @@ function App() {
           <Route path="/tp5" element={<Page5/>} />
           <Route path="/tp6" element={<Page6/>} />
 
-          
             
 
         </Routes>
