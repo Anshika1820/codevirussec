@@ -103,7 +103,8 @@ const Home = () => {
       </section>
 
       <Services />
-      <Project/>
+      
+      <Project preview={true}/>
       <About />
      
     </div>
