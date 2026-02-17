@@ -14,8 +14,13 @@ import Login from "./Pages/Login";
 import Contact from "./Pages/Contact";
 import SecurityApproach from "./Pages/SecurityApproach";
 import GetStarted from "./Pages/GetStarted";
-import Team from "./Pages/Team";
 import Project from "./Pages/Project";
+import Page1 from "./Pages/Page1";
+import Page2 from "./Pages/Page2";
+import Page3 from "./Pages/Page3";
+import Page4 from "./Pages/Page4";
+import Page5 from "./Pages/Page5";
+import Page6 from "./Pages/Page6";
 
 function App() {
   return (
@@ -38,13 +43,19 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/security-approach" element={<SecurityApproach />} />
           <Route path="/getstarted" element={<GetStarted />} />
-          <Route path="/team" element={<Team />} />
           <Route path="/project" element={<Project/>} />
+          <Route path="/tp1" element={<Page1/>} />
+          <Route path="/tp2" element={<Page2/>} />
+          <Route path="/tp3" element={<Page3/>} />
+          <Route path="/tp4" element={<Page4/>} />
+          <Route path="/tp5" element={<Page5/>} />
+          <Route path="/tp6" element={<Page6/>} />
 
           
             
 
         </Routes>
+       
       </main>
        {/* Footer */}
       <Footer/>
