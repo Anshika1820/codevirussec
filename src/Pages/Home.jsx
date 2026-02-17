@@ -13,7 +13,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden -mt-[50px]">
       {/* HERO SECTION */}
       <section
         id="home"
@@ -104,7 +104,6 @@ const Home = () => {
 
       <Services />
       <Project/>
-      <Team/>
       <About />
      
     </div>
