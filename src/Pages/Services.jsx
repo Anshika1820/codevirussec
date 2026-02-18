@@ -5,9 +5,9 @@ import digitalforensics from "../assets/Photos/digitalforensics.png";
 import dataloss from "../assets/Photos/dataloss.png";
 import zerosecurity from "../assets/Photos/zerosecurity.png";
 
-const Services = ({ preview = false }) => {
+const Services = ({preview = false}) => {
   const [activeService, setActiveService] = useState(null);
-  
+
   useEffect(() => {
     document.documentElement.style.scrollbarGutter = "stable";
 
@@ -363,72 +363,229 @@ const Services = ({ preview = false }) => {
       },
     },
   ];
-const visibleServices = preview ? services.slice(0, 3) : services;
+const previewServices = services.slice(0, 3);
+if (preview) {
   return (
-    <div className="bg-slate-50 py-20">
+    <section className="py-20 px-6 bg-gradient-to-b from-white to-slate-50">
+      <div className="max-w-7xl mx-auto text-center mb-14">
+        <h2 className="text-3xl font-bold text-[#0b2a5b]">
+          Our Services
+        </h2>
+        <p className="text-slate-600 mt-3">
+          Cybersecurity solutions designed for modern enterprises.
+        </p>
+      </div>
+
+      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+        {previewServices.map((service, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-500 overflow-hidden group hover:-translate-y-2"
+          >
+            <div className="h-44 overflow-hidden">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div className="p-6">
+              <h3 className="text-lg font-semibold text-[#0b2a5b] mb-2">
+                {service.title}
+              </h3>
+
+              <p className="text-slate-600 text-sm">
+                {service.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center mt-12">
+        <Link
+          to="/services"
+          className="px-6 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:scale-105 transition"
+        >
+          View All Services
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+  return (
+    <div className="bg-white text-slate-800">
+      {/* GRID + HERO */}
       {!activeService && (
         <>
-          {/* HEADER */}
-          <div className="max-w-6xl mx-auto text-center mb-14 px-6">
-            <h2 className="text-3xl font-bold text-[#0b2a5b]">
-              Our Services
-            </h2>
-            <p className="text-slate-600 mt-3">
-              Enterprise-grade cybersecurity solutions designed to protect
-              modern digital infrastructure.
-            </p>
-          </div>
+          <section className="bg-gradient-to-br from-white via-[#f4f8fc] to-[#e6f0fa] pt-24 pb-20 px-6 border-b border-slate-200">
+            <div className="max-w-7xl mx-auto">
+              <span className="text-sm uppercase tracking-widest text-[#163d82] font-semibold">
+                Our Services
+              </span>
 
-          {/* SERVICES GRID */}
-          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
-            {visibleServices.map((service) => (
-              <div
-                key={service.id}
-                onClick={() => setActiveService(service)}
-                className="cursor-pointer bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:-translate-y-2 transition"
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
+              <h1 className="text-4xl lg:text-5xl font-extrabold mt-4 mb-5 leading-tight text-[#0b2a5b]">
+                Enterprise Cybersecurity <br />
+                <span className="text-[#163d82]">Services & Solutions</span>
+              </h1>
 
-                <h3 className="text-xl font-semibold text-[#0b2a5b] mb-2">
-                  {service.title}
-                </h3>
-
-                <p className="text-slate-600 text-sm">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* VIEW ALL BUTTON (ONLY FOR HOME PREVIEW) */}
-          {preview && (
-            <div className="text-center mt-10">
-              <Link
-                to="/services"
-                className="px-6 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:scale-105 transition"
-              >
-                View All Services
-              </Link>
+              <p className="text-slate-700 text-base lg:text-lg leading-relaxed max-w-3xl">
+                We provide end-to-end cybersecurity services designed to defend,
+                detect, and respond to modern cyber threats.
+              </p>
             </div>
-          )}
+          </section>
+
+          <section className="py-20 px-6 bg-white">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group"
+                >
+                  <div className="relative w-full aspect-[16/9] bg-slate-100 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                      {service.desc}
+                    </p>
+
+                    <button
+                      onClick={() => {
+                        window.scrollTo({ top: 0 });
+                        setActiveService(service);
+                        sessionStorage.setItem(
+                          "activeService",
+                          JSON.stringify(service)
+                        );
+                      }}
+                      className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                    >
+                      View More →
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
         </>
       )}
 
-      {/* SINGLE SERVICE DETAIL */}
+      {/* SINGLE DETAIL PAGE */}
       {activeService && (
-        <div className="max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-lg text-center">
-          <div className="text-5xl mb-4">{activeService.icon}</div>
+        <div className="bg-slate-50 min-h-screen">
+          {/* HERO */}
+          <div className="relative h-[320px] w-full overflow-hidden">
+            <img
+              src={activeService.image}
+              alt={activeService.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
 
-          <h2 className="text-2xl font-bold text-[#0b2a5b] mb-4">
-            {activeService.title}
-          </h2>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0b2a5b]/95 via-[#163d82]/90 to-[#0b2a5b]/95" />
 
-          <p className="text-slate-600 mb-6">{activeService.details}</p>
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0 });
+                setActiveService(null);
+                sessionStorage.removeItem("activeService");
+              }}
+              className="absolute top-6 left-6 z-20 bg-white text-[#0b2a5b] px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:bg-slate-100 transition"
+            >
+              ← Back to Services
+            </button>
 
-          <button
-            onClick={() => setActiveService(null)}
-            className="px-6 py-2 bg-[#0b2a5b] text-white rounded-full"
-          >
-            Back
-          </button>
+            <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex flex-col justify-center text-white">
+              <h1 className="text-4xl font-bold leading-tight max-w-3xl">
+                {activeService.title}
+              </h1>
+
+              <p className="mt-6 text-lg text-blue-100 max-w-2xl leading-relaxed">
+                {activeService.details.why}
+              </p>
+            </div>
+          </div>
+
+          {/* CONTENT */}
+          <section className="py-20 px-6">
+            <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-12 items-stretch">
+              {/* LEFT */}
+              <div className="lg:col-span-2 space-y-10">
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-10">
+                  <h3 className="text-2xl font-bold text-[#0b2a5b] mb-6">
+                    Overview
+                  </h3>
+                  <p className="text-slate-700 leading-relaxed text-lg">
+                    {activeService.details.overview}
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-10">
+                  <h3 className="text-2xl font-bold text-[#0b2a5b] mb-8">
+                    Key Features
+                  </h3>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {activeService.details.features.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start gap-4 bg-slate-50 p-6 rounded-xl border border-slate-200"
+                      >
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#163d82] text-white font-bold text-sm">
+                          ✓
+                        </div>
+                        <span className="text-slate-700 text-base">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT SIDEBAR (Height Balanced) */}
+              <div className="flex flex-col h-full space-y-8">
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                  <h4 className="text-lg font-semibold text-[#0b2a5b] mb-4">
+                    Service Snapshot
+                  </h4>
+                  <ul className="space-y-3 text-sm text-slate-600">
+                    <li>✔ Enterprise-Grade Protection</li>
+                    <li>✔ Compliance Ready</li>
+                    <li>✔ Risk-Based Approach</li>
+                    <li>✔ Expert-Led Execution</li>
+                  </ul>
+                </div>
+
+                                <div className="bg-gradient-to-br from-[#163d82] to-[#0b2a5b] rounded-2xl p-8 text-white shadow-md flex flex-col justify-between flex-grow">
+                  <div>
+                    <h4 className="text-xl font-semibold mb-4">
+                      Need Expert Assistance?
+                    </h4>
+                    <p className="text-sm text-blue-100 mb-6 leading-relaxed">
+                      Our cybersecurity specialists are ready to help secure your organization with tailored, enterprise-grade solutions.
+                    </p>
+                  </div>
+                  <Link to="/contact">
+                  <button className="w-full bg-white text-[#0b2a5b] font-semibold py-3 rounded-lg hover:bg-slate-100 transition">
+                    Contact Security Team
+                  </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       )}
     </div>
