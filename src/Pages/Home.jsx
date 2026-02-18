@@ -102,7 +102,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Services />
+      <Services  preview={true} />
       
       <Project preview={true}/>
       <About />
