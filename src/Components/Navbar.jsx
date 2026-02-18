@@ -30,7 +30,6 @@ const Navbar = () => {
     { name: "Projects", path: "/project", icon: <FaProjectDiagram /> },
     { name: "Team", path: "/tp1", icon: <FaUsers /> },
     { name: "About Us", path: "/about", icon: <FaInfoCircle /> },
-    { name: "Contact", path: "/contact", icon: <FaPhone /> },
   ];
 
   const handleSearch = () => {
@@ -62,7 +61,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Company Logo"
-            className="h-12 w-auto object-contain"
+            className="h-18 w-auto object-contain"
           />
         </NavLink>
 
