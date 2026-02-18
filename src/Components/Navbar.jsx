@@ -55,7 +55,7 @@ const Navbar = () => {
         scrolled ? "bg-white shadow-md" : "bg-white"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center">
+      <nav className="max-w-screen-xl mx-auto px-6 h-20 flex items-center">
         
         {/* LOGO */}
         <NavLink to="/" className="flex items-center gap-2">
@@ -67,7 +67,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* DESKTOP MENU */}
-        <ul className="hidden md:flex gap-10 ml-16 font-medium text-[#0b2a5b]">
+        <ul className="hidden md:flex gap-8 ml-12 font-medium text-[#0b2a5b] whitespace-nowrap">
           {menuItems.map((item) => (
             <li key={item.name}>
               <NavLink
@@ -97,13 +97,15 @@ const Navbar = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="pl-9 pr-4 py-2 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0b2a5b] text-sm"
+              className="pl-9 pr-3 py-1.5 w-40 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0b2a5b] text-sm"
+
             />
           </div>
 
           {/* Login */}
           <NavLink to="/login">
-            <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0b2a5b] text-white font-semibold hover:bg-[#163d82] transition">
+            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition"
+>
               <FaSignInAlt />
               Login
             </button>
@@ -111,7 +113,8 @@ const Navbar = () => {
 
           {/* Contact */}
           <NavLink to="/contact">
-            <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition">
+            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition"
+>
               <FaPhone />
               Contact
             </button>
