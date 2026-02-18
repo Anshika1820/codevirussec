@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import networksecurity from "../assets/Photos/network.png";
-import digitalforensics from "../assets/Phtots/digitalforensics.png";
+import digitalforensics from "../assets/Photos/digitalforensics.png";
 import dataloss from "../assets/Photos/dataloss.png";
 import zerosecurity from "../assets/Photos/zerosecurity.png";
 
