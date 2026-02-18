@@ -7,7 +7,6 @@ import About from "./About";
 
 const Home = () => {
   const [active, setActive] = useState(false);
-
   useEffect(() => {
     setActive(true);
   }, []);
