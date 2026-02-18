@@ -363,7 +363,7 @@ const Services = ({ preview = false }) => {
       },
     },
   ];
-const displayedServices = preview ? services.slice(0, 3) : services;
+const visibleServices = preview ? services.slice(0, 3) : services;
   return (
     <div className="bg-slate-50 py-20">
       {!activeService && (
