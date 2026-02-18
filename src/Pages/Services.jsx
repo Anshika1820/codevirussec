@@ -399,6 +399,19 @@ if (preview) {
                 {service.desc}
               </p>
             </div>
+             <button
+                      onClick={() => {
+                        window.scrollTo({ top: 0 });
+                        setActiveService(service);
+                        sessionStorage.setItem(
+                          "activeService",
+                          JSON.stringify(service)
+                        );
+                      }}
+                      className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                    >
+                      View More →
+                    </button>
           </div>
         ))}
       </div>
