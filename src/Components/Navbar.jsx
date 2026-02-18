@@ -54,8 +54,7 @@ const Navbar = () => {
         scrolled ? "bg-white shadow-md" : "bg-white"
       }`}
     >
-      <nav className="max-w-screen-xl mx-auto px-6 h-20 flex items-center">
-        
+      <nav className="w-full h-20 flex items-center px-6">        
         {/* LOGO */}
         <NavLink to="/" className="flex items-center gap-2">
           <img
