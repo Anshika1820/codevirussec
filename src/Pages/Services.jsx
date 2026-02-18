@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import networksecurity from "../asstes/Photos/network.png";
+import digitalforensics from "../assets/Phtots/digitalforensics.png";
+import dataloss from "../assets/Photos/dataloss.png";
+import zerosecurity from "../assets?Photos/zerosecurity.png";
 
 const Services = () => {
   const [activeService, setActiveService] = useState(null);
@@ -97,7 +101,7 @@ const Services = () => {
       desc:
         "Protect enterprise networks from internal and external cyber threats.",
       image:
-        "https://images.unsplash.com/photo-1526378722371-4b4a0e3b0c3a?auto=format&fit=crop&w=1200&q=80",
+        networksecurity,
       details: {
         overview:
           "Comprehensive network defense using firewalls, intrusion detection, and zero trust architecture.",
@@ -173,7 +177,7 @@ const Services = () => {
       desc:
         "Investigate cyber incidents and securely collect digital evidence.",
       image:
-        "https://images.unsplash.com/photo-1581090700227-1e8b59f1f3f1?auto=format&fit=crop&w=1200&q=80",
+        digitalforensics,
       details: {
         overview:
           "Professional investigations for cybercrime, fraud detection, and legal proceedings.",
@@ -249,7 +253,7 @@ const Services = () => {
       desc:
         "Monitor and safeguard sensitive business data from unauthorized exposure.",
       image:
-        "https://images.unsplash.com/photo-1563201515-adbe35c669c0?auto=format&fit=crop&w=1200&q=80",
+        dataloss,
       details: {
         overview:
           "Prevent data leakage across endpoints, email, and cloud environments.",
@@ -268,7 +272,7 @@ const Services = () => {
       desc:
         "Implement zero trust architecture to eliminate implicit trust.",
       image:
-        "https://images.unsplash.com/photo-1591696331111-ef9586a5b17f?auto=format&fit=crop&w=1200&q=80",
+        zerosecurity,
       details: {
         overview:
           "Continuous identity verification and micro-segmentation strategy.",
