@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaHome,
   FaCogs,
@@ -15,6 +15,8 @@ import logo from "../assets/Photos/logo.jpg";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -28,7 +30,24 @@ const Navbar = () => {
     { name: "Projects", path: "/project", icon: <FaProjectDiagram /> },
     { name: "Team", path: "/tp1", icon: <FaUsers /> },
     { name: "About Us", path: "/about", icon: <FaInfoCircle /> },
+    { name: "Contact", path: "/contact", icon: <FaPhone /> },
   ];
+
+  const handleSearch = () => {
+    if (!query.trim()) return;
+
+    const match = menuItems.find((item) =>
+      item.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    if (match) {
+      navigate(match.path);
+      setQuery("");
+      setOpen(false);
+    } else {
+      alert("No page found");
+    }
+  };
 
   return (
     <header
@@ -54,13 +73,9 @@ const Navbar = () => {
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-2 transition relative
-                  ${
-                    isActive
-                      ? "text-[#163d82] font-semibold after:w-full"
-                      : "hover:text-[#163d82]"
-                  }
-                  after:block after:h-[2px] after:w-0 after:bg-[#0b2a5b] after:transition-all hover:after:w-full`
+                  `flex items-center gap-2 transition ${
+                    isActive ? "text-[#163d82] font-semibold" : ""
+                  }`
                 }
               >
                 {item.icon}
@@ -74,11 +89,14 @@ const Navbar = () => {
         <div className="ml-auto hidden md:flex items-center gap-4">
           
           {/* Search */}
-          <div className="relative">
-            <FaSearch className="absolute left-3 top-3 text-gray-400 text-sm" />
+          <div className="relative flex items-center">
+            <FaSearch className="absolute left-3 text-gray-400 text-sm" />
             <input
               type="text"
               placeholder="Search…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               className="pl-9 pr-4 py-2 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0b2a5b] text-sm"
             />
           </div>
@@ -117,36 +135,28 @@ const Navbar = () => {
               key={item.name}
               to={item.path}
               onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-2 block ${
-                  isActive ? "text-[#163d82] font-semibold" : ""
-                }`
-              }
+              className="flex items-center gap-2"
             >
               {item.icon}
               {item.name}
             </NavLink>
           ))}
 
-          <input
-            type="text"
-            placeholder="Search…"
-            className="w-full px-4 py-2 rounded-full border border-slate-300"
-          />
-
-          <NavLink to="/login" onClick={() => setOpen(false)}>
-            <button className="w-full py-2 rounded-full bg-[#0b2a5b] text-white flex items-center justify-center gap-2">
-              <FaSignInAlt />
-              Login
-            </button>
-          </NavLink>
-
-          <NavLink to="/contact" onClick={() => setOpen(false)}>
-            <button className="w-full py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white flex items-center justify-center gap-2">
-              <FaPhone />
-              Contact
-            </button>
-          </NavLink>
+          {/* Mobile Search */}
+          <div className="flex items-center border rounded-full px-3 py-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              className="w-full outline-none"
+            />
+            <FaSearch
+              onClick={handleSearch}
+              className="ml-2 cursor-pointer"
+            />
+          </div>
         </div>
       )}
     </header>
