@@ -5,9 +5,9 @@ import digitalforensics from "../assets/Photos/digitalforensics.png";
 import dataloss from "../assets/Photos/dataloss.png";
 import zerosecurity from "../assets/Photos/zerosecurity.png";
 
-const Services = () => {
+const Services = ({ preview = false }) => {
   const [activeService, setActiveService] = useState(null);
-
+  
   useEffect(() => {
     document.documentElement.style.scrollbarGutter = "stable";
 
@@ -363,7 +363,7 @@ const Services = () => {
       },
     },
   ];
-
+const displayedServices = preview ? services.slice(0, 3) : services;
   return (
     <div className="bg-white text-slate-800">
       {/* GRID + HERO */}
@@ -387,51 +387,57 @@ const Services = () => {
             </div>
           </section>
 
-          <section className="py-20 px-6 bg-white">
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group"
-                >
-                  <div className="relative w-full aspect-[16/9] bg-slate-100 overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
+         <section className="py-20 px-6 bg-white">
+  <div className="max-w-7xl mx-auto">
 
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3">
-                      {service.title}
-                    </h3>
+    {/* GRID */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {displayedServices.map((service, index) => (
+        <div
+          key={index}
+          className="bg-gradient-to-br from-[#0b2a5b] to-[#163d82] text-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+        >
+          <h3 className="text-lg font-semibold mb-3">
+            {service.title}
+          </h3>
 
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                      {service.desc}
-                    </p>
+          <p className="text-sm text-blue-100 leading-relaxed">
+            {service.desc}
+          </p>
 
-                    <button
-                      onClick={() => {
-                        window.scrollTo({ top: 0 });
-                        setActiveService(service);
-                        sessionStorage.setItem(
-                          "activeService",
-                          JSON.stringify(service)
-                        );
-                      }}
-                      className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
-                    >
-                      View More →
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </>
-      )}
+          {!preview && (
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0 });
+                setActiveService(service);
+                sessionStorage.setItem(
+                  "activeService",
+                  JSON.stringify(service)
+                );
+              }}
+              className="mt-4 text-sm font-semibold text-white"
+            >
+              View More →
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
+
+    {/* VIEW ALL BUTTON FOR HOME */}
+    {preview && (
+      <div className="text-center mt-12">
+        <Link
+          to="/services"
+          className="px-8 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:bg-[#163d82] transition"
+        >
+          Explore All Services
+        </Link>
+      </div>
+    )}
+  </div>
+</section>
+
 
       {/* SINGLE DETAIL PAGE */}
       {activeService && (
