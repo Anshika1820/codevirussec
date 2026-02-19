@@ -4,6 +4,9 @@ import Services from "./Services";
 import Project from "./Project";
 import Team from "./Team";
 import About from "./About";
+import networksecurity from "../assets/Photos/network.png";
+import digitalforensics from "../assets/Photos/digitalforensics.png";
+import dataloss from "../assets/Photos/dataloss.png";
 
 const Home = () => {
   const [active, setActive] = useState(false);
@@ -100,8 +103,112 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <Services  preview={true} />
+      {/* Services Preview Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+      
+          {/* Header */}
+          <div className="text-center mb-14">
+            <span className="text-sm uppercase tracking-widest text-[#163d82] font-semibold">
+              Our Services
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#0b2a5b] mt-3">
+              Enterprise Security Solutions
+            </h2>
+          </div>
+      
+          {/* Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+            {/* Card 1 */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+              <div className="relative w-full aspect-[16/9] bg-slate-100 overflow-hidden">
+                <img
+                  src={networksecurity}
+                  alt="Network Security"
+                  className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3">
+                  Network Security
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Protect enterprise networks from internal and external cyber threats.
+                </p>
+                <Link
+                  to="/services?service=network-security"
+                  className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                >
+                  View More →
+                </Link>
+              </div>
+            </div>
+      
+            {/* Card 2 */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+              <div className="relative w-full aspect-[16/9] bg-slate-100 overflow-hidden">
+                <img
+                  src={digitalforensics}
+                  alt="Digital Forensics"
+                  className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3">
+                  Digital Forensics
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Investigate cyber incidents and securely collect digital evidence.
+                </p>
+                <Link
+                  to="/services?service=digital-forensics"
+                  className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                >
+                  View More →
+                </Link>
+              </div>
+            </div>
+      
+            {/* Card 3 */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+              <div className="relative w-full aspect-[16/9] bg-slate-100 overflow-hidden">
+                <img
+                  src={dataloss}
+                  alt="Data Loss Prevention"
+                  className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold text-[#0b2a5b] mb-3">
+                  Data Loss Prevention (DLP)
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Safeguard sensitive business data from unauthorized exposure.
+                </p>
+                <Link
+                  to="/services?service=data-loss-prevention-dlp"
+                  className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                >
+                  View More →
+                </Link>
+              </div>
+            </div>
+      
+          </div>
+      
+          {/* View All Button */}
+          <div className="text-center mt-12">
+            <Link
+              to="/services"
+              className="inline-block bg-[#163d82] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0b2a5b] transition"
+            >
+              View All Services
+            </Link>
+          </div>
+      
+        </div>
+      </section>
       
       <Project preview={true}/>
       <About />
