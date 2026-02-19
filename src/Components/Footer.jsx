@@ -44,48 +44,46 @@ const Footer = () => {
             </p>
 
             {/* Social Icons */}
-            {/* Social Icons */}
-<div className="flex items-center gap-5 mt-6">
-
-  <a
-    href="https://x.com/codevirussec"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
-  >
-    <Twitter size={20} />
-  </a>
-
-  <a
-    href="https://www.instagram.com/codevirussec"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
-  >
-    <Instagram size={20} />
-  </a>
-
-  <a
-    href="https://www.linkedin.com/company/codevirussecurity/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
-  >
-    <Linkedin size={20} />
-  </a>
-
-  <a
-    href="https://www.facebook.com/codevirussec9"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
-  >
-    <Facebook size={20} />
-  </a>
-
-</div>
-
-
+            <div className="flex items-center gap-5 mt-6">
+            
+              <a
+                href="https://x.com/codevirussec"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+              >
+                <Twitter size={20} />
+              </a>
+            
+              <a
+                href="https://www.instagram.com/codevirussec"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+              >
+                <Instagram size={20} />
+              </a>
+            
+              <a
+                href="https://www.linkedin.com/company/codevirussecurity/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+              >
+                <Linkedin size={20} />
+              </a>
+            
+              <a
+                href="https://www.facebook.com/codevirussec9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+              >
+                <Facebook size={20} />
+              </a>
+            
+            </div>
+          </div>
           {/* Contact */}
           <div>
             <h4 className="text-sm font-semibold text-[#0b2a5b] mb-5 uppercase tracking-wide">
