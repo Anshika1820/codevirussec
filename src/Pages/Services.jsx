@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import networksecurity from "../assets/Photos/network.png";
 import digitalforensics from "../assets/Photos/digitalforensics.png";
 import dataloss from "../assets/Photos/dataloss.png";
 import zerosecurity from "../assets/Photos/zerosecurity.png";
-
-const Services = ({preview = false}) => {
+const Services = () => {
   const [activeService, setActiveService] = useState(null);
+  const location = useLocation();
 
-  useEffect(() => {
-    document.documentElement.style.scrollbarGutter = "stable";
-
-    // Restore active service from sessionStorage if it exists
-    const savedService = sessionStorage.getItem("activeService");
-    if (savedService) {
-      setActiveService(JSON.parse(savedService));
-      window.scrollTo({ top: 0 });
-    }
-  }, []);
+  // Helper to convert a service title to slug (matches footer links)
+  const getSlug = (title) =>
+    title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
   const services = [
     {
@@ -188,10 +181,11 @@ const Services = ({preview = false}) => {
           "Malware Analysis",
           "Data Recovery",
           "Court-Ready Reporting",
+          
         ],
       },
     },
-    {
+     {
       title: "Compliance & Risk Management",
       desc:
         "Ensure regulatory compliance while reducing enterprise security risks.",
@@ -272,7 +266,7 @@ const Services = ({preview = false}) => {
       desc:
         "Implement zero trust architecture to eliminate implicit trust.",
       image:
-        zerosecurity,
+       zerosecurity,
       details: {
         overview:
           "Continuous identity verification and micro-segmentation strategy.",
@@ -363,76 +357,38 @@ const Services = ({preview = false}) => {
       },
     },
   ];
-const previewServices = services.slice(0, 3);
-if (preview) {
-  return (
-    <section className="py-20 px-6 bg-gradient-to-b from-white to-slate-50">
-      <div className="max-w-7xl mx-auto text-center mb-14">
-        <h2 className="text-3xl font-bold text-[#0b2a5b]">
-          Our Services
-        </h2>
-        <p className="text-slate-600 mt-3">
-          Cybersecurity solutions designed for modern enterprises.
-        </p>
-      </div>
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-        {previewServices.map((service, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-500 overflow-hidden group hover:-translate-y-2"
-          >
-            <div className="h-44 overflow-hidden">
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-              />
-            </div>
+  useEffect(() => {
+    // Scrollbar style
+    document.documentElement.style.scrollbarGutter = "stable";
 
-            <div className="p-6">
-              <h3 className="text-lg font-semibold text-[#0b2a5b] mb-2">
-                {service.title}
-              </h3>
+    // 1️⃣ Get service slug from URL (from footer link)
+    const params = new URLSearchParams(location.search);
+    const serviceSlug = params.get("service");
 
-              <p className="text-slate-600 text-sm">
-                {service.desc}
-              </p>
-            </div>
-             <button
-                      onClick={() => {
-                        window.scrollTo({ top: 0 });
-                        setActiveService(service);
-                        sessionStorage.setItem(
-                          "activeService",
-                          JSON.stringify(service)
-                        );
-                      }}
-                      className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
-                    >
-                      View More →
-                    </button>
-          </div>
-        ))}
-      </div>
+    if (serviceSlug) {
+      const service = services.find((s) => getSlug(s.title) === serviceSlug);
+      if (service) {
+        setActiveService(service);
+        window.scrollTo({ top: 0 });
+        return;
+      }
+    }
 
-      <div className="text-center mt-12">
-        <Link
-          to="/services"
-          className="px-6 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:scale-105 transition"
-        >
-          View All Services
-        </Link>
-      </div>
-    </section>
-  );
-}
+    // 2️⃣ Restore from sessionStorage if exists
+    const savedService = sessionStorage.getItem("activeService");
+    if (savedService) {
+      setActiveService(JSON.parse(savedService));
+      window.scrollTo({ top: 0 });
+    }
+  }, [location.search]);
 
   return (
     <div className="bg-white text-slate-800">
       {/* GRID + HERO */}
       {!activeService && (
         <>
+          {/* Hero Section */}
           <section className="bg-gradient-to-br from-white via-[#f4f8fc] to-[#e6f0fa] pt-24 pb-20 px-6 border-b border-slate-200">
             <div className="max-w-7xl mx-auto">
               <span className="text-sm uppercase tracking-widest text-[#163d82] font-semibold">
@@ -451,6 +407,7 @@ if (preview) {
             </div>
           </section>
 
+          {/* Services Grid */}
           <section className="py-20 px-6 bg-white">
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
@@ -476,19 +433,18 @@ if (preview) {
                       {service.desc}
                     </p>
 
-                    <button
-                      onClick={() => {
-                        window.scrollTo({ top: 0 });
-                        setActiveService(service);
+                    <Link
+                      to={`/services?service=${getSlug(service.title)}`}
+                      className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                      onClick={() =>
                         sessionStorage.setItem(
                           "activeService",
                           JSON.stringify(service)
-                        );
-                      }}
-                      className="mt-auto text-sm font-semibold text-[#163d82] hover:text-[#0b2a5b]"
+                        )
+                      }
                     >
                       View More →
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -500,16 +456,14 @@ if (preview) {
       {/* SINGLE DETAIL PAGE */}
       {activeService && (
         <div className="bg-slate-50 min-h-screen">
-          {/* HERO */}
+          {/* Hero */}
           <div className="relative h-[320px] w-full overflow-hidden">
             <img
               src={activeService.image}
               alt={activeService.title}
               className="absolute inset-0 w-full h-full object-cover"
             />
-
             <div className="absolute inset-0 bg-gradient-to-r from-[#0b2a5b]/95 via-[#163d82]/90 to-[#0b2a5b]/95" />
-
             <button
               onClick={() => {
                 window.scrollTo({ top: 0 });
@@ -520,19 +474,17 @@ if (preview) {
             >
               ← Back to Services
             </button>
-
             <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex flex-col justify-center text-white">
               <h1 className="text-4xl font-bold leading-tight max-w-3xl">
                 {activeService.title}
               </h1>
-
               <p className="mt-6 text-lg text-blue-100 max-w-2xl leading-relaxed">
                 {activeService.details.why}
               </p>
             </div>
           </div>
 
-          {/* CONTENT */}
+          {/* Content */}
           <section className="py-20 px-6">
             <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-12 items-stretch">
               {/* LEFT */}
@@ -567,7 +519,7 @@ if (preview) {
                 </div>
               </div>
 
-              {/* RIGHT SIDEBAR (Height Balanced) */}
+              {/* RIGHT SIDEBAR */}
               <div className="flex flex-col h-full space-y-8">
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
                   <h4 className="text-lg font-semibold text-[#0b2a5b] mb-4">
@@ -581,7 +533,7 @@ if (preview) {
                   </ul>
                 </div>
 
-                                <div className="bg-gradient-to-br from-[#163d82] to-[#0b2a5b] rounded-2xl p-8 text-white shadow-md flex flex-col justify-between flex-grow">
+                <div className="bg-gradient-to-br from-[#163d82] to-[#0b2a5b] rounded-2xl p-8 text-white shadow-md flex flex-col justify-between flex-grow">
                   <div>
                     <h4 className="text-xl font-semibold mb-4">
                       Need Expert Assistance?
@@ -591,9 +543,9 @@ if (preview) {
                     </p>
                   </div>
                   <Link to="/contact">
-                  <button className="w-full bg-white text-[#0b2a5b] font-semibold py-3 rounded-lg hover:bg-slate-100 transition">
-                    Contact Security Team
-                  </button>
+                    <button className="w-full bg-white text-[#0b2a5b] font-semibold py-3 rounded-lg hover:bg-slate-100 transition">
+                      Contact Security Team
+                    </button>
                   </Link>
                 </div>
               </div>
