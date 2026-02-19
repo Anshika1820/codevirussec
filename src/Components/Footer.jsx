@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, Mail, ShieldCheck, Twitter, Instagram, Linkedin, Facebook } from "lucide-react";
 
 const Footer = () => {
   const services = [
@@ -44,56 +44,47 @@ const Footer = () => {
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-4 mt-6">
-              {/* X */}
-              <a
-                href="https://x.com/codevirussec"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition"
-              >
-                <svg className="w-5 h-5 fill-gray-500 hover:fill-[#0b2a5b] transition" viewBox="0 0 24 24">
-                  <path d="M18.244 2H21.552L14.325 10.254L22.855 22H16.284L11.144 14.981L4.918 22H1.607L9.342 13.125L1.145 2H7.889L12.549 8.471L18.244 2Z" />
-                </svg>
-              </a>
+            {/* Social Icons */}
+<div className="flex items-center gap-5 mt-6">
 
-              {/* Instagram */}
-              <a
-                href="https://www.instagram.com/codevirussec"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition"
-              >
-                <svg className="w-5 h-5 text-gray-500 hover:text-[#0b2a5b] transition" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zm0 1.5h8.5A4.75 4.75 0 0121 7.75v8.5A4.75 4.75 0 0116.25 21h-8.5A4.75 4.75 0 013 16.25v-8.5A4.75 4.75 0 017.75 3.5z" />
-                </svg>
-              </a>
+  <a
+    href="https://x.com/codevirussec"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+  >
+    <Twitter size={20} />
+  </a>
 
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/company/codevirussecurity/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition"
-              >
-                <svg className="w-5 h-5 fill-gray-500 hover:fill-[#0b2a5b] transition" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
-                </svg>
-              </a>
+  <a
+    href="https://www.instagram.com/codevirussec"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+  >
+    <Instagram size={20} />
+  </a>
 
-              {/* Facebook */}
-              <a
-                href="https://www.facebook.com/codevirussec9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition"
-              >
-                <svg className="w-5 h-5 fill-gray-500 hover:fill-[#0b2a5b] transition" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.49 0-1.953.925-1.953 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              </a>
-            </div>
-          </div>
+  <a
+    href="https://www.linkedin.com/company/codevirussecurity/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+  >
+    <Linkedin size={20} />
+  </a>
+
+  <a
+    href="https://www.facebook.com/codevirussec9"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-500 hover:text-[#0b2a5b] transition duration-300"
+  >
+    <Facebook size={20} />
+  </a>
+
+</div>
+
 
           {/* Contact */}
           <div>
