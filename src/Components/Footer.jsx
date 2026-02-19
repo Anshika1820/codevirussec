@@ -99,10 +99,11 @@ const Footer = () => {
                 <a href="mailto:services@codevirussec.in" className="hover:text-[#071a36] transition">
                   services@codevirussec.in
                 </a>
+                
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-[#0b2a5b]" />
-                +91 9918103909
+                +91 5223153884
               </li>
             </ul>
           </div>
