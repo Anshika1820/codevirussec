@@ -76,7 +76,7 @@ const Home = () => {
               active
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 translate-x-12"
-            } bg-gradient-to-b from-[#00010] to-[#071a36] rounded-3xl p-12 text-slate-200 shadow-[0_40px_80px_rgba(7,26,54,0.6)]`}
+            } bg-gradient-to-b from-[#0b2a5b] to-[#071a36] rounded-3xl p-12 text-slate-200 shadow-[0_40px_80px_rgba(7,26,54,0.6)]`}
           >
             <h3 className="text-2xl font-bold mb-6">
               Why Enterprises Choose Us
