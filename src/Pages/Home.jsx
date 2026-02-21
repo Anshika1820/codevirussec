@@ -210,9 +210,9 @@ const Home = () => {
         </div>
       </section>
       
-      <Project preview={true}/>
+      
       <About />
-     
+       <Project preview={true}/>
     </div>
   );
 };
