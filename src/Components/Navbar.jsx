@@ -1,186 +1,95 @@
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   FaHome,
   FaCogs,
   FaProjectDiagram,
   FaUsers,
   FaInfoCircle,
-  FaSignInAlt,
   FaPhone,
   FaSearch,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
-import logo from "../assets/Photos/logo.jpg";
+
+import logo from "../assets/logo.png"; // make sure logo exists
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const menuItems = [
-    { name: "Home", path: "/", icon: <FaHome /> },
-    { name: "Services", path: "/services", icon: <FaCogs /> },
-    { name: "Projects", path: "/project", icon: <FaProjectDiagram /> },
-    { name: "Team", path: "/tp1", icon: <FaUsers /> },
-    { name: "About Us", path: "/about", icon: <FaInfoCircle /> },
-  ];
-
-  const handleSearch = () => {
-    if (!query.trim()) return;
-
-    const match = menuItems.find((item) =>
-      item.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    if (match) {
-      navigate(match.path);
-      setQuery("");
-      setOpen(false);
-    } else {
-      alert("No page found");
-    }
-  };
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white"
-      }`}
-    >
-      <nav className="w-full h-20 flex items-center px-6">
+    <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         
-        {/* LOGO */}
-        <NavLink to="/" className="flex items-center">
+        {/* LOGO LEFT SIDE */}
+        <div className="flex items-center gap-2">
           <img
             src={logo}
-            alt="Company Logo"
-            className="h-16 w-auto object-contain"
+            alt="Logo"
+            className="h-10 w-auto object-contain"
           />
-        </NavLink>
-
-        {/* DESKTOP MENU */}
-        <ul className="hidden md:flex gap-8 ml-12 font-medium text-[#0b2a5b] whitespace-nowrap">
-          {menuItems.map((item) => (
-            <li key={item.name}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  `flex items-center gap-2 transition duration-200 ${
-                    isActive
-                      ? "text-[#163d82] font-semibold"
-                      : "hover:text-[#163d82]"
-                  }`
-                }
-              >
-                {item.icon}
-                {item.name}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-
-        {/* DESKTOP RIGHT SIDE */}
-        <div className="ml-auto hidden md:flex items-center gap-4">
-          
-          {/* Search */}
-          <div className="relative flex items-center">
-            <FaSearch className="absolute left-3 text-gray-400 text-sm" />
-            <input
-              type="text"
-              placeholder="Search…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="pl-9 pr-3 py-1.5 w-40 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0b2a5b] text-sm"
-            />
-          </div>
-
-          {/* Login */}
-          <NavLink to="/login">
-            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition">
-              <FaSignInAlt />
-              Login
-            </button>
-          </NavLink>
-
-          {/* Contact */}
-          <NavLink to="/contact">
-            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition">
-              <FaPhone />
-              Contact
-            </button>
-          </NavLink>
+          <span className="text-xl font-bold text-blue-900">
+            CodeVirusSec
+          </span>
         </div>
 
-        {/* MOBILE MENU BUTTON */}
-        <button
-          className="ml-auto md:hidden text-3xl text-[#0b2a5b] transition-transform duration-300"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "✕" : "☰"}
-        </button>
-      </nav>
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center gap-6 text-blue-900 font-medium">
+          <NavLink to="/" className="flex items-center gap-2 hover:text-blue-600">
+            <FaHome /> Home
+          </NavLink>
 
-      {/* MOBILE MENU */}
-      {open && (
-        <div className="md:hidden bg-white border-t px-6 py-6 space-y-6 text-[#0b2a5b] font-medium shadow-lg animate-slideDown">
+          <NavLink to="/services" className="flex items-center gap-2 hover:text-blue-600">
+            <FaCogs /> Services
+          </NavLink>
 
-          {/* Menu Links */}
-          {menuItems.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.path}
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-3 text-lg"
-            >
-              {item.icon}
-              {item.name}
-            </NavLink>
-          ))}
+          <NavLink to="/projects" className="flex items-center gap-2 hover:text-blue-600">
+            <FaProjectDiagram /> Projects
+          </NavLink>
 
-          <hr />
+          <NavLink to="/team" className="flex items-center gap-2 hover:text-blue-600">
+            <FaUsers /> Team
+          </NavLink>
 
-          {/* Mobile Search */}
-          <div className="flex items-center border rounded-full px-4 py-2">
+          <NavLink to="/about" className="flex items-center gap-2 hover:text-blue-600">
+            <FaInfoCircle /> About
+          </NavLink>
+
+          <NavLink to="/contact" className="flex items-center gap-2 hover:text-blue-600">
+            <FaPhone /> Contact
+          </NavLink>
+
+          {/* SEARCH BOX */}
+          <div className="relative">
             <input
               type="text"
               placeholder="Search..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="w-full outline-none text-sm"
+              className="border rounded-full pl-10 pr-4 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            <FaSearch
-              onClick={handleSearch}
-              className="ml-2 cursor-pointer text-[#0b2a5b]"
-            />
+            <FaSearch className="absolute left-3 top-2 text-gray-400" />
           </div>
+        </div>
 
-          {/* Login Button */}
-          <NavLink to="/login" onClick={() => setOpen(false)}>
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-md">
-              <FaSignInAlt />
-              Login
-            </button>
-          </NavLink>
+        {/* MOBILE MENU BUTTON */}
+        <div className="md:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+          </button>
+        </div>
+      </div>
 
-          {/* Contact Button */}
-          <NavLink to="/contact" onClick={() => setOpen(false)}>
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-md">
-              <FaPhone />
-              Contact
-            </button>
-          </NavLink>
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div className="md:hidden bg-white shadow-md px-6 pb-4 flex flex-col gap-4 text-blue-900 font-medium">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/services">Services</NavLink>
+          <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/team">Team</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </div>
       )}
-    </header>
+    </nav>
   );
 };
 
