@@ -65,37 +65,58 @@ const About = () => {
     <div className="bg-gradient-to-b from-white via-slate-50 to-white text-gray-900">
 
       {/* HERO SECTION */}
-      <section className="py-32 px-6 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-100 relative overflow-hidden">
+      <section className="relative overflow-hidden">
 
-        {/* Decorative Glow */}
-        <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-300 opacity-20 blur-3xl rounded-full animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-indigo-300 opacity-20 blur-3xl rounded-full animate-pulse"></div>
-
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        {/* BACKGROUND SPLIT */}
+        <div className="absolute inset-0 flex">
+          <div className="w-1/2 bg-[#f4f6f9]"></div>
+          <div className="w-1/2 bg-[#0b2a5b]"></div>
+        </div>
+      
+        {/* DIAGONAL CUT */}
+        <div className="absolute inset-0">
+          <div className="absolute right-1/2 top-0 h-full w-40 bg-[#0b2a5b] transform skew-x-[-20deg] origin-top-right"></div>
+        </div>
+      
+        <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 py-32 px-6 items-center">
+      
+          {/* LEFT CONTENT */}
           <div className={`transition-all duration-1000 ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-            <span className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#0b2a5b] font-semibold rounded-full text-sm shadow-sm">
+      
+            <span className="inline-block mb-4 px-4 py-2 bg-blue-100 text-[#0b2a5b] font-semibold rounded-full text-sm">
               About Codevirus Security
             </span>
-            <h1 className="text-4xl lg:text-5xl font-extrabold mb-6 bg-gradient-to-r from-[#0b2a5b] to-indigo-600 bg-clip-text text-transparent">
+      
+            <h1 className="text-4xl lg:text-5xl font-extrabold mb-6 text-[#0b2a5b]">
               Your Trusted Cybersecurity Partner
             </h1>
+      
             <p className="mb-4 text-gray-700 leading-relaxed">
               Established in 2018, Codevirus Security provides enterprise cybersecurity services and professional training to help organizations stay protected from evolving digital threats.
             </p>
+      
             <p className="mb-6 text-gray-700 leading-relaxed">
               Our training programs equip students with industry-ready skills while our enterprise solutions secure networks, applications, and cloud environments.
             </p>
+      
           </div>
-
-          <div className={`bg-white/70 backdrop-blur-lg border border-gray-200 rounded-3xl p-10 shadow-xl transition-all duration-1000 ${active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
-            <h3 className="text-xl font-semibold mb-4 text-[#0b2a5b]">Our Strengths</h3>
-            <ul className="space-y-3 text-gray-700">
+      
+          {/* RIGHT CARD */}
+          <div className={`bg-[#102f63] text-white rounded-3xl p-10 shadow-2xl transition-all duration-1000 ${active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
+      
+            <h3 className="text-2xl font-semibold mb-6">
+              Why Enterprises Choose Us
+            </h3>
+      
+            <ul className="space-y-4 text-gray-200">
               <li>✔ Modern Cybersecurity Solutions</li>
               <li>✔ 24/7 Monitoring & Protection</li>
               <li>✔ Expert Security Professionals</li>
               <li>✔ Industry-Ready Training</li>
             </ul>
+      
           </div>
+      
         </div>
       </section>
 
