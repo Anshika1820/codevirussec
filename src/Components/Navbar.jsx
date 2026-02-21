@@ -129,56 +129,66 @@ const Navbar = () => {
       </nav>
 
       {/* MOBILE MENU */}
-      {open && (
-        <div className="md:hidden bg-white border-t px-6 py-6 space-y-6 text-[#0b2a5b] font-medium shadow-lg">
+      {/* MOBILE MENU */}
+{open && (
+  <div className="md:hidden bg-white border-t px-6 py-6 space-y-6 text-[#0b2a5b] font-medium shadow-lg">
 
-          {/* Mobile Links */}
-          {menuItems.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.path}
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-3 text-lg"
-            >
-              {item.icon}
-              {item.name}
-            </NavLink>
-          ))}
+    {/* 🔍 Search at Top */}
+    <div className="flex items-center border rounded-full px-4 py-2">
+      <input
+        type="text"
+        placeholder="Search..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        className="w-full outline-none text-sm"
+      />
+      <FaSearch
+        onClick={handleSearch}
+        className="ml-2 cursor-pointer text-gray-500"
+      />
+    </div>
 
-          {/* Mobile Search */}
-          <div className="flex items-center border rounded-full px-4 py-2">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="w-full outline-none text-sm"
-            />
-            <FaSearch
-              onClick={handleSearch}
-              className="ml-2 cursor-pointer text-gray-500"
-            />
-          </div>
+    {/* 📌 Mobile Links */}
+    {menuItems.map((item) => (
+      <NavLink
+        key={item.name}
+        to={item.path}
+        onClick={() => setOpen(false)}
+        className="flex items-center gap-3 text-lg"
+      >
+        {item.icon}
+        {item.name}
+      </NavLink>
+    ))}
 
-          {/* Mobile Buttons */}
-          <div className="flex flex-col gap-3 pt-2">
-            <NavLink to="/login" onClick={() => setOpen(false)}>
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-md">
-                <FaSignInAlt />
-                Login
-              </button>
-            </NavLink>
+    {/* 🔘 Small Side-by-Side Buttons */}
+    <div className="flex gap-4 pt-4">
+      <NavLink
+        to="/login"
+        onClick={() => setOpen(false)}
+        className="flex-1"
+      >
+        <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white text-sm font-semibold shadow-md">
+          <FaSignInAlt />
+          Login
+        </button>
+      </NavLink>
 
-            <NavLink to="/contact" onClick={() => setOpen(false)}>
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-md">
-                <FaPhone />
-                Contact
-              </button>
-            </NavLink>
-          </div>
-        </div>
-      )}
+      <NavLink
+        to="/contact"
+        onClick={() => setOpen(false)}
+        className="flex-1"
+      >
+        <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white text-sm font-semibold shadow-md">
+          <FaPhone />
+          Contact
+        </button>
+      </NavLink>
+    </div>
+
+  </div>
+)}
     </header>
   );
 };
