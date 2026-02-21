@@ -12,7 +12,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-import logo from "../assets/logo.png"; // make sure logo exists
+import logo from "../assets/Photos/logo.png"; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
