@@ -50,17 +50,18 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled ? "bg-white shadow-md" : "bg-white"
       }`}
     >
-      <nav className="w-full h-20 flex items-center px-6">        
+      <nav className="w-full h-20 flex items-center px-6">
+        
         {/* LOGO */}
-        <NavLink to="/" className="flex items-center gap-2">
+        <NavLink to="/" className="flex items-center">
           <img
             src={logo}
             alt="Company Logo"
-            className="h-18 w-auto object-contain"
+            className="h-16 w-auto object-contain"
           />
         </NavLink>
 
@@ -71,8 +72,10 @@ const Navbar = () => {
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-2 transition ${
-                    isActive ? "text-[#163d82] font-semibold" : ""
+                  `flex items-center gap-2 transition duration-200 ${
+                    isActive
+                      ? "text-[#163d82] font-semibold"
+                      : "hover:text-[#163d82]"
                   }`
                 }
               >
@@ -83,7 +86,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* RIGHT SIDE */}
+        {/* DESKTOP RIGHT SIDE */}
         <div className="ml-auto hidden md:flex items-center gap-4">
           
           {/* Search */}
@@ -96,14 +99,12 @@ const Navbar = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               className="pl-9 pr-3 py-1.5 w-40 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0b2a5b] text-sm"
-
             />
           </div>
 
           {/* Login */}
           <NavLink to="/login">
-            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition"
->
+            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition">
               <FaSignInAlt />
               Login
             </button>
@@ -111,8 +112,7 @@ const Navbar = () => {
 
           {/* Contact */}
           <NavLink to="/contact">
-            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition"
->
+            <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-lg hover:scale-105 transition">
               <FaPhone />
               Contact
             </button>
@@ -121,43 +121,63 @@ const Navbar = () => {
 
         {/* MOBILE MENU BUTTON */}
         <button
-          className="ml-auto md:hidden text-3xl text-[#0b2a5b]"
+          className="ml-auto md:hidden text-3xl text-[#0b2a5b] transition-transform duration-300"
           onClick={() => setOpen(!open)}
         >
-          ☰
+          {open ? "✕" : "☰"}
         </button>
       </nav>
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden bg-white border-t px-6 py-6 space-y-4 text-[#0b2a5b] font-medium">
+        <div className="md:hidden bg-white border-t px-6 py-6 space-y-6 text-[#0b2a5b] font-medium shadow-lg animate-slideDown">
+
+          {/* Menu Links */}
           {menuItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-3 text-lg"
             >
               {item.icon}
               {item.name}
             </NavLink>
           ))}
 
+          <hr />
+
           {/* Mobile Search */}
-          <div className="flex items-center border rounded-full px-3 py-2">
+          <div className="flex items-center border rounded-full px-4 py-2">
             <input
               type="text"
               placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="w-full outline-none"
+              className="w-full outline-none text-sm"
             />
             <FaSearch
               onClick={handleSearch}
-              className="ml-2 cursor-pointer"
+              className="ml-2 cursor-pointer text-[#0b2a5b]"
             />
           </div>
+
+          {/* Login Button */}
+          <NavLink to="/login" onClick={() => setOpen(false)}>
+            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-md">
+              <FaSignInAlt />
+              Login
+            </button>
+          </NavLink>
+
+          {/* Contact Button */}
+          <NavLink to="/contact" onClick={() => setOpen(false)}>
+            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0b2a5b] to-[#163d82] text-white font-semibold shadow-md">
+              <FaPhone />
+              Contact
+            </button>
+          </NavLink>
         </div>
       )}
     </header>
