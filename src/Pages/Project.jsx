@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import iot1  from '../assets/Photos/iot1.png';
-import soc1 from '../assets/Photos/soc1.png';
-import soc2 from '../assets/Photos/soc2.png';
-import soc3 from '../assets/Photos/soc3.png';
-import mon1 from '../assets/Photos/mon1.png';
-import threat1 from '../assets/Photos/threat1.png';
-import cloudsec1 from '../assets/Photos/cloudsec1.png';
-import cloudsec2 from '../assets/Photos/cloudsec2.png';
-import cloudsec3 from '../assets/Photos/cloudsec3.png';
-import cloudsec4 from '../assets/Photos/cloudsec4.png';
-import cloudsec5 from '../assets/Photos/cloudsec5.png';
-import security1 from '../assets/Photos/security1.png';
-import privacy1 from '../assets/Photos/privacy1.png';
-import privacy2 from '../assets/Photos/privacy2.png';
-import vapt1 from '../assets/Photos/vapt1.png';
-import vapt2 from '../assets/Photos/vapt2.png';
-import vapt3 from '../assets/Photos/vapt3.png';
-import vapt4 from '../assets/Photos/vapt4.png';
+
+import iot1 from "../assets/Photos/iot1.png";
+import soc1 from "../assets/Photos/soc1.png";
+import soc2 from "../assets/Photos/soc2.png";
+import soc3 from "../assets/Photos/soc3.png";
+import mon1 from "../assets/Photos/mon1.png";
+import threat1 from "../assets/Photos/threat1.png";
+import cloudsec1 from "../assets/Photos/cloudsec1.png";
+import cloudsec2 from "../assets/Photos/cloudsec2.png";
+import cloudsec3 from "../assets/Photos/cloudsec3.png";
+import cloudsec4 from "../assets/Photos/cloudsec4.png";
+import cloudsec5 from "../assets/Photos/cloudsec5.png";
+import security1 from "../assets/Photos/security1.png";
+import privacy1 from "../assets/Photos/privacy1.png";
+import privacy2 from "../assets/Photos/privacy2.png";
+import vapt1 from "../assets/Photos/vapt1.png";
+import vapt2 from "../assets/Photos/vapt2.png";
+import vapt3 from "../assets/Photos/vapt3.png";
+import vapt4 from "../assets/Photos/vapt4.png";
+
 const categories = [
   "All",
   "IoT Security",
@@ -214,25 +216,23 @@ const projects = [
   },
 ];
 
-export default function Projects({preview = false}) {
+export default function Projects({ preview = false }) {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [view, setView] = useState("home");
-  const [activeProject, setActiveProject] = useState(null);
 
-let filteredProjects =
-activeCategory === "All"
-  ? projects
-  : projects.filter((p) => p.category === activeCategory);
+  let filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
 
-if (preview) {
-  filteredProjects = projects.slice(0, 3);
-}
+  if (preview) {
+    filteredProjects = projects.slice(0, 3);
+  }
 
   return (
     <div className="pt-24 py-12 min-h-screen bg-slate-100 w-full">
-
-      {/* HERO */}
-      {!preview && view !== "detail" && (
+      
+      {/* HERO SECTION */}
+      {!preview && (
         <section className="w-full pt-12 pb-16">
           <div className="max-w-6xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#0b2a5b] mb-6">
@@ -247,15 +247,14 @@ if (preview) {
       )}
 
       {/* FILTER BUTTONS */}
-      {!preview && view !== "detail" && (
+      {!preview && (
         <section className="w-full pb-10">
           <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition
-                ${
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition ${
                   activeCategory === cat
                     ? "bg-[#0b2a5b] text-white shadow-lg"
                     : "bg-white border border-slate-200 text-slate-700 hover:border-[#0b2a5b]"
@@ -269,101 +268,87 @@ if (preview) {
       )}
 
       {/* PROJECT CARDS */}
-          `{view !== "detail" && (
-            <section className="w-full ">
-              <h1 className="text-4xl md:text-3xl font-extrabold text-[#0b2a5b] mb-6 text-center pb-10   ">Codevirus Cybersecurity Projects & Case Studies</h1>
-              <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                
-                {filteredProjects.map((project, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -8 }}
-                    className="cursor-pointer rounded-2xl overflow-hidden bg-[#0f1f3d] border border-[#1d3b6d] shadow-lg hover:shadow-2xl transition-all"
-                    onClick={() => {
-                      if (!preview) {
-                        setActiveProject(project);
-                        setView("detail");
-                      }
-                    }}
-                  >
-                    
-                    {/* IMAGE */}
-                    <div className="relative h-56 overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
-
-                      {!preview && (
-                        <span className="absolute top-4 left-4 bg-white text-[#0b2a5b] text-xs font-semibold px-4 py-1 rounded-full shadow-md">
-                          {project.category}
-                        </span>
-                      )}
-
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0b2a5b]/80 via-transparent to-transparent"></div>
-                    </div>
-
-                    {/* CONTENT */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-3 leading-snug">
-                        {project.title}
-                      </h3>
-
-                      {/* LESS DETAILS IN PREVIEW */}
-                      <p className="text-slate-300 text-sm mb-5">
-                        {preview
-                          ? project.description.substring(0, 90) + "..."
-                          : project.description}
-                      </p>
-
-                      {/* Hide extra details in preview */}
-                      {!preview && (
-                        <>
-                          <div className="text-sm text-slate-400 mb-4 space-y-1">
-                            <p>
-                              <span className="font-semibold text-white">Client:</span>{" "}
-                              {project.client}
-                            </p>
-                            <p>
-                              <span className="font-semibold text-white">Duration:</span>{" "}
-                              {project.duration}
-                            </p>
-                          </div>
-
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies.slice(0, 4).map((tech, index) => (
-                              <span
-                                key={index}
-                                className="bg-[#1d3b6d] text-slate-200 text-xs px-3 py-1 rounded-full"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
+      <section className="w-full">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredProjects.map((project, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -8 }}
+              className="rounded-2xl overflow-hidden bg-[#0f1f3d] border border-[#1d3b6d] shadow-lg hover:shadow-2xl transition-all"
+            >
+              {/* IMAGE */}
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+                {!preview && (
+                  <span className="absolute top-4 left-4 bg-white text-[#0b2a5b] text-xs font-semibold px-4 py-1 rounded-full shadow-md">
+                    {project.category}
+                  </span>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b2a5b]/80 via-transparent to-transparent"></div>
               </div>
 
-              {/* VIEW ALL BUTTON ONLY IN PREVIEW */}
-              {preview && (
-                <div className="text-center mt-12">
-                  <a
-                    href="/project"
-                    className="px-8 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:bg-[#081c3a] transition"
-                  >
-                    View All Projects
-                  </a>
-                </div>
-              )}
-            </section>
-          )}
+              {/* CONTENT */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-3 leading-snug">
+                  {project.title}
+                </h3>
 
+                <p className="text-slate-300 text-sm mb-5">
+                  {preview
+                    ? project.description.substring(0, 90) + "..."
+                    : project.description}
+                </p>
 
-     
+                {!preview && (
+                  <>
+                    <div className="text-sm text-slate-400 mb-4 space-y-1">
+                      <p>
+                        <span className="font-semibold text-white">
+                          Client:
+                        </span>{" "}
+                        {project.client}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-white">
+                          Duration:
+                        </span>{" "}
+                        {project.duration}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="bg-[#1d3b6d] text-slate-200 text-xs px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* VIEW ALL BUTTON */}
+        {preview && (
+          <div className="text-center mt-12">
+            <a
+              href="/project"
+              className="px-8 py-3 bg-[#0b2a5b] text-white rounded-full font-semibold hover:bg-[#081c3a] transition"
+            >
+              View All Projects
+            </a>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
