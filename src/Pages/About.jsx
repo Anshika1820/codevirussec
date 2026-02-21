@@ -26,7 +26,6 @@ const About = () => {
 
   useEffect(() => setActive(true), []);
 
-  // Animate stats
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -63,16 +62,21 @@ const About = () => {
   }, [hasCounted]);
 
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-gradient-to-b from-white via-slate-50 to-white text-gray-900">
 
-      {/* HERO SECTION - LIGHT BACKGROUND */}
-      <section className="py-32 px-6 bg-gradient-to-br from-[#f9fafb] to-[#e5e7eb] text-gray-900">
-        <di v className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      {/* HERO SECTION */}
+      <section className="py-32 px-6 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-100 relative overflow-hidden">
+
+        {/* Decorative Glow */}
+        <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-300 opacity-20 blur-3xl rounded-full animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-indigo-300 opacity-20 blur-3xl rounded-full animate-pulse"></div>
+
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className={`transition-all duration-1000 ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-            <span className="inline-block mb-4 px-4 py-2 bg-blue-100 text-[#0b2a5b] font-semibold rounded-full text-sm">
+            <span className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#0b2a5b] font-semibold rounded-full text-sm shadow-sm">
               About Codevirus Security
             </span>
-            <h1 className="text-4xl lg:text-5xl font-extrabold mb-6 text-[#0b2a5b]">
+            <h1 className="text-4xl lg:text-5xl font-extrabold mb-6 bg-gradient-to-r from-[#0b2a5b] to-indigo-600 bg-clip-text text-transparent">
               Your Trusted Cybersecurity Partner
             </h1>
             <p className="mb-4 text-gray-700 leading-relaxed">
@@ -83,7 +87,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className={`bg-white border border-gray-200 rounded-3xl p-10 shadow transition-all duration-1000 ${active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
+          <div className={`bg-white/70 backdrop-blur-lg border border-gray-200 rounded-3xl p-10 shadow-xl transition-all duration-1000 ${active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
             <h3 className="text-xl font-semibold mb-4 text-[#0b2a5b]">Our Strengths</h3>
             <ul className="space-y-3 text-gray-700">
               <li>✔ Modern Cybersecurity Solutions</li>
@@ -92,20 +96,28 @@ const About = () => {
               <li>✔ Industry-Ready Training</li>
             </ul>
           </div>
-        </di>
+        </div>
       </section>
 
       {/* IMPACT STATS */}
-      <section className="py-16 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gradient-to-r from-slate-50 to-blue-50">
         <div ref={statsRef} className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#0b2a5b] mb-4">Performance at a Glance</h2>
-          <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#0b2a5b] mb-4">
+            Performance at a Glance
+          </h2>
+          <p className="text-gray-700 mb-12 max-w-2xl mx-auto">
             We have helped organizations worldwide with advanced cybersecurity solutions, building trust and delivering measurable results.
           </p>
-          <div className="grid md:grid-cols-4 gap-6">
+
+          <div className="grid md:grid-cols-4 gap-8">
             {statsData.map((s, i) => (
-              <div key={i} className="bg-white rounded-2xl p-8 shadow hover:shadow-lg transition">
-                <h3 className="text-3xl font-bold text-[#0b2a5b] mb-2">{counts[i]}{s.suffix}</h3>
+              <div
+                key={i}
+                className="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-slate-100"
+              >
+                <h3 className="text-4xl font-bold text-indigo-600 mb-2">
+                  {counts[i]}{s.suffix}
+                </h3>
                 <p className="text-gray-700">{s.label}</p>
               </div>
             ))}
@@ -113,31 +125,41 @@ const About = () => {
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
+      {/* FEATURES */}
       <section className="py-28 px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#0b2a5b] mb-6">Our Key Services & Expertise</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#0b2a5b] mb-6">
+            Our Key Services & Expertise
+          </h2>
+
           <p className="text-gray-700 max-w-3xl mx-auto mb-16 leading-relaxed">
             Our solutions cover enterprise cybersecurity operations, compliance management, cloud security, threat detection, and professional training programs.
           </p>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
-              <div key={i} className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <h3 className="font-semibold text-lg text-[#0b2a5b] mb-2">{f.title}</h3>
+              <div
+                key={i}
+                className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 border border-slate-100"
+              >
+                <h3 className="font-semibold text-lg text-indigo-700 mb-3">
+                  {f.title}
+                </h3>
                 <p className="text-gray-700 text-sm">{f.desc}</p>
               </div>
             ))}
           </div>
 
-          {/* VISION & MISSION - SPECIAL LOOK */}
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
-            <div className="bg-gradient-to-r from-blue-100 to-blue-200 p-8 rounded-3xl shadow-lg border border-blue-300">
+          {/* VISION & MISSION */}
+          <div className="grid md:grid-cols-2 gap-8 mt-20">
+            <div className="bg-gradient-to-br from-blue-200 to-indigo-300 p-10 rounded-3xl shadow-2xl hover:scale-105 transition duration-500">
               <h3 className="text-xl font-semibold text-[#0b2a5b] mb-4">Our Vision</h3>
               <p className="text-gray-900 leading-relaxed">
                 To be the most trusted cybersecurity partner, delivering scalable, intelligent, and proactive solutions for modern enterprises.
               </p>
             </div>
-            <div className="bg-gradient-to-r from-green-100 to-green-200 p-8 rounded-3xl shadow-lg border border-green-300">
+
+            <div className="bg-gradient-to-br from-green-200 to-emerald-300 p-10 rounded-3xl shadow-2xl hover:scale-105 transition duration-500">
               <h3 className="text-xl font-semibold text-[#0b2a5b] mb-4">Our Mission</h3>
               <p className="text-gray-900 leading-relaxed">
                 To help organizations secure their digital assets, identify risks, and respond efficiently to threats through expert services and professional training.
