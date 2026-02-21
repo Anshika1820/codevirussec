@@ -363,40 +363,7 @@ if (preview) {
           )}
 
 
-      {/* DETAIL VIEW */}
-      {view === "detail" && activeProject && (
-        <section className="py-24 px-6 bg-gradient-to-br from-[#0b2a5b] to-[#081c3a] min-h-screen">
-          <div className="max-w-5xl mx-auto bg-white rounded-3xl p-12 shadow-xl">
-            <button
-              onClick={() => {
-                setView("home");
-                setActiveProject(null);
-              }}
-              className="mb-10 text-sm font-semibold text-[#0b2a5b] hover:underline"
-            >
-              ← Back to Projects
-            </button>
-
-            <h1 className="text-4xl font-extrabold text-[#0b2a5b] mb-10">
-              {activeProject.title}
-            </h1>
-
-            <p className="text-slate-700 text-lg mb-8">
-              {activeProject.description}
-            </p>
-
-            <p><strong>Client:</strong> {activeProject.client}</p>
-            <p><strong>Duration:</strong> {activeProject.duration}</p>
-
-            <h3 className="mt-6 font-semibold">Technologies Used</h3>
-            <ul className="list-disc pl-6">
-              {activeProject.technologies.map((tech, i) => (
-                <li key={i}>{tech}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
+     
     </div>
   );
 }
