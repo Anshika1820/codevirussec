@@ -270,6 +270,9 @@ export default function Projects({ preview = false }) {
       {/* PROJECT CARDS */}
       <section className="w-full">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#0b2a5b] mb-6">
+              Codevirus Cybersecurity Projects & Case Studies
+            </h1>
           {filteredProjects.map((project, i) => (
             <motion.div
               key={i}
