@@ -63,7 +63,7 @@ const Home = () => {
 
               <Link
                 to="/security-approach"
-                className="px-9 py-3 rounded-full font-bold border-2 border-[#0b2a5b] text-[#0b2a5b] hover:bg-[#0b2a5b] hover:text-white transition"
+                className="px-9 py-3 rounded-full font-bold border-2 border-[#00000] text-[#00000] hover:bg-[#00000] hover:text-white transition"
               >
                 Our Security Approach
               </Link>
@@ -76,7 +76,7 @@ const Home = () => {
               active
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 translate-x-12"
-            } bg-gradient-to-b from-[#0b2a5b] to-[#071a36] rounded-3xl p-12 text-slate-200 shadow-[0_40px_80px_rgba(7,26,54,0.6)]`}
+            } bg-gradient-to-b from-[#0000] to-[#071a36] rounded-3xl p-12 text-slate-200 shadow-[0_40px_80px_rgba(7,26,54,0.6)]`}
           >
             <h3 className="text-2xl font-bold mb-6">
               Why Enterprises Choose Us
