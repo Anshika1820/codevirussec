@@ -269,10 +269,19 @@ export default function Projects({ preview = false }) {
 
       {/* PROJECT CARDS */}
       <section className="w-full">
+        {/* PREVIEW HEADLINE */}
+        {preview && (
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b2a5b]">
+              Our Featured Cybersecurity Projects
+            </h2>
+            <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
+              A glimpse of our enterprise-grade cybersecurity implementations.
+            </p>
+          </div>
+        )}
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#0b2a5b] mb-6 w-full text-center">
-              Codevirus Cybersecurity Projects & Case Studies
-            </h1>
+         
           {filteredProjects.map((project, i) => (
             <motion.div
               key={i}
